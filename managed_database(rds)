@@ -1,0 +1,152 @@
+5.	Design an architecture for hosting café dynamic website in a prod kind of environment using managed solutions for database in a particular region. 
+-Create database using RDS and connect it to web layer
+-you can try this in sandbox 
+-CFA: Module 8 Lab 5
+-Cloud architecting: Module 6 challenge lab
+-Challenge (Cafe) lab: Migrating a Database to Amazon RDS
+-Guided lab: Creating an Amazon RDS Database
+
+
+MANAGED DB INSTEAD OF PRIVATE DB SERVER
+aurora- aws 
+managed service--- rds
+
+vpc>
+create>
+name_tag>
+lab_vpc
+cidr>
+10.0.0.0/16
+az>
+2>
+custom az.
+10.0.0.0/24
+10.0.2.0/24
+10.0.1.0/24
+10.0.3.0/24
+nat gateway>
+in 1 az>
+vpc endpoint>
+none>
+ok>
+
+///////////////route -n  -----for route table path
+vpc>
+select>
+labvpc>
+select public route table>
+
+ec2>
+launch>
+name>
+web
+.
+.
+n/w setttings>
+vpc>
+labvpc
+subnet>
+public>
+auto assign>
+enable>
+add>
+type>
+http>
+source>
+anywhere>
+launch>
+
+instance>
+web>
+
+$ cd
+$ Downloads/
+$ sudo rm -rf labsuser.pem
+
+learner lab>
+aws details>
+download pem>
+
+$ sudo chmod 600 labsuser.pem
+$ sudo ssh -i labsuser.pem ubuntu@<ip>
+$ sudo apt-get update -y
+$ sudo apt-get install apache2 mysql-client -y
+
+
+rds>
+create db>
+std create>
+mysql>
+template> //imp
+free-tier> //imp
+settings>
+db instance>
+cafedb
+master user>
+admin
+p/w>
+Msios123
+db instance class>
+burstable>
+db.t3.micro>
+storage>
+connectivity>
+---connect to ec2 instance is to be done later
+pvt cloud vpc>
+labvpc>
+vpc security grp>
+create new>
+mydbsg
+tags>
+key>
+Name
+value>
+cafedb
+db authentication>
+p/w authentication>
+create>
+
+databases>
+cafedb>
+security>
+click on link>
+edit inbound rule>
+source type> 
+Mysql/aurora
+anywhere>
+save>
+
+rds>
+database>
+copy endpoint port>
+
+$ sudo mysql -u admin -h <paste domain name> -p
+mysql> create database mom_pop_db; //db name same as the db name in the .sql file in the mompopdb file
+mysql> GRANT ALL PRIVILEGES ON mom_pop_db.* TO 'admin'@'%' WITH GRANT OPTION;
+mysql> exit;
+
+$  sudo git clone https://github.com/sreepathysois/Cafe_Dynamic_Website.git //clone the repo
+$ cd to clone repo to mompopdb (create_db.sql)
+$ sudo mysql -u admin -h <paste  endpoint domain name> -p
+mysql> use mom_pop_db;
+mysql> source create-db.sql;
+mysql> exit;
+
+$ sudo mkdir /var/www/html/cafeapp
+$ cd ..
+$ sudo cp -rf mompopcafe/* /var/www/html/cafeapp
+$ cd /var/www/html/cafeapp
+$ sudo nano /etc/apache2/sites-available/000-default.conf
+DocumentRoot /var/www/html/cafeapp
+
+$ sudo systemctl restart apache2
+$ sudo nano getAppParameters.php
+change credentials
+db_url paste the rds endoint
+  $db_url = "cafedb1.chmg4ui0u8no.us-east-1.rds.amazonaws.com";
+  $db_name = "mom_pop_db";
+  $db_user = "admin";
+  $db_password = "Msois123";
+
+$ sudo systemctl restart apache2
+paste webserver ip of ec2 instance in browser
