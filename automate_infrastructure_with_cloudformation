@@ -1,0 +1,66 @@
+Task 1: Deploying a Networking Layer
+Download the Template:
+
+Right-click and download lab-network.yaml.
+Navigate to CloudFormation:
+
+Search for CloudFormation in the AWS Management Console.
+Choose Create stack > With new resources (standard).
+Upload Template:
+
+Select Template is ready.
+Choose Upload a template file, then upload lab-network.yaml.
+Click Next.
+Specify Stack Details:
+
+Enter Stack name: lab-network.
+Click Next.
+Add Tags:
+
+Add a tag with Key: application, Value: inventory.
+Click Next, then Submit.
+Monitor Stack Creation:
+
+Wait for the status to change to CREATE_COMPLETE.
+Review the Resources, Events, and Outputs tabs.
+Task 2: Deploying an Application Layer
+Download the Template:
+
+Right-click and download lab-application.yaml.
+Create a New Stack:
+
+In CloudFormation, choose Create stack > With new resources (standard).
+Select Template is ready, upload lab-application.yaml, and click Next.
+Specify Stack Details:
+
+Enter Stack name: lab-application.
+Ensure NetworkStackName is set to lab-network.
+Click Next.
+Add Tags:
+
+Add a tag with Key: application, Value: inventory.
+Click Next, then Submit.
+Monitor and Test:
+
+Wait for the status to change to CREATE_COMPLETE.
+In the Outputs tab, copy the provided URL, open it in a browser, and verify the application.
+Task 3: Updating a Stack
+Examine Current Security Group Rules:
+
+In the EC2 console, navigate to Security Groups.
+Select lab-application-WebServerSecurityGroup and review the Inbound rules.
+Update the Stack:
+
+Download lab-application2.yaml.
+In CloudFormation, select the lab-application stack.
+Choose Update > Replace current template, and upload lab-application2.yaml.
+Review Changes:
+
+Click through to the Review screen.
+Examine the Change set preview to confirm updates.
+Submit Update:
+
+Click Submit and wait for the status to change to UPDATE_COMPLETE.
+Verify Changes:
+
+Return to the EC2 console and confirm the updated security group rule for HTTPS traffic on port 443.
