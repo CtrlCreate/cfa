@@ -1,0 +1,48 @@
+1.	Design a Bullet Proof Architecture for hosting a Café Static website for a Business case using AWS Services. 
+Note: Architectural Solution should record/document Content Distribution Globally across all region and provide solution for accessing site via domain name (No need of implementing this feature) 
+
+
+S3 BUCKET
+
+Launch AWS Academy Learner Lab>
+start lab>
+once light turns green, click it
+preference>
+click on show ......
+search s3>
+s3>
+create bucket>
+bucketname> msiscafe.com ////name should be unique globally
+block public> uncheck all and acknowledge
+////add tag> key -> name value -> msiscafe
+create>
+view details>
+///////s3 bucket is used to host static website, streaming website etc where there is no much user involvement
+clone git source code -----https://github.com/sreepathysois/cafe-static-website.git
+objects>
+add folder>add all the folder
+upload>
+bucket>
+click on link>
+properties>
+static website hosting> enable>host
+specify index
+save>
+bucket>
+objects>
+select all>
+actions>
+make public>--here acl is disabled, to enable that,
+bucket>
+permissions>
+object ownership>
+edit>
+enable acl>
+save>
+objects>
+select all>
+actions>
+enable mke public>
+properties>
+static website hosting>
+open url ---done
