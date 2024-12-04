@@ -1,0 +1,102 @@
+2.	Design an architecture for hosting Café dynamic website of particular using un-managed solutions for database in a particular region of AWS for setting dev or test environment.  
+
+- Standalone dynamic website using one single EC2 insatnce
+-you can try in sandbox
+-CFA: Module 6 lab 3 (its not exact solution, but you can practice using this lab)
+-Cloud architecting: Module 5 Challenge lab
+-Challenge (Cafe) lab: Creating a Dynamic Website for the Café
+
+
+Create VPC
+vpc>
+create>
+name_tag>
+lab_vpc
+cidr>
+10.0.0.0/16
+az>
+2>
+custom az.
+10.0.0.0/24
+10.0.2.0/24
+10.0.1.0/24
+10.0.3.0/24
+nat gateway>
+in 1 az>
+vpc endpoint>
+none>
+ok>
+
+
+Create EC2 instance 
+Name>
+cafe_webserver
+Instance type>
+Ubuntu
+Key pair>
+vockey
+Network settings>
+vpc>
+labvpc
+subnet>
+public>
+auto assign>
+enable>
+add>
+type>
+http>
+source>
+anywhere>
+launch>
+
+learner lab>
+aws details>
+download pem>
+$ sudo chmod 600 labsuser.pem
+$ sudo ssh -i labsuser.pem ubuntu@<public ip>
+$ sudo apt-get install apache2 libapache2-mod-php php php-mysql mysql-client
+$ sudo systemctl status apache2
+
+$ sudo git clone https://github.com/sreepathysois/Cafe_Dynamic_Website.git //Clone the repo
+$cd Cafe_Dynamic_Website
+$sudo mkdir /var/www/html/cafeapp
+$ sudo cp -rf mompopcafe/* /var/www/html/cafeapp
+$ cd /var/www/html/cafeapp
+$ sudo nano /etc/apache2/sites-available/000-default.conf
+DocumentRoot /var/www/html/cafeapp
+
+$ sudo systemctl restart apache2
+
+copy public web server ip >
+-----browser
+https:/<ip>
+
+$ sudo  mysql -u root -p
+
+mysql> create database mom_pop_db;
+mysql> CREATE USER 'msis'@'%' IDENTIFIED WITH mysql_native_password BY 'Msois@123';  ----% means user can access by localhost or server
+mysql> ALTER USER 'msis'@'%' IDENTIFIED WITH mysql_native_password BY 'Msois@123';
+mysql> GRANT ALL PRIVILEGES ON mom_pop_db.* TO 'msis'@'%' WITH GRANT OPTION;
+mysql> exit;
+
+$ exit
+
+$sudo mysql -u msis -p
+>show databases;
+>use mom_pop_db;
+>show tables;
+>source mom_pop_db/create-db.sql;
+>show tables;
+>exit;
+
+$ cd /var/www/html/cafeapp
+$ ls
+$ sudo nano getAppParameters.php
+	db_url="localhost";
+	db_name="mom_pop_db";
+	db_user="msis";
+$ sudo systemctl restart apache2
+
+copy public web server ip >
+-----browser
+https:/<ip>
