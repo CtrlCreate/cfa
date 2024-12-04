@@ -1,3 +1,5 @@
+Cloud 9,ECR,ECS,EC2
+
 cloud architecture -> module 14 -> optional guided lab (check manual)
 but it is not  open ,do in cosole 
 open cloud 9 from console in new tab -> open ecr in new tab->open ecs in new tab->open ec2 in new tab->
