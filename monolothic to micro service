@@ -1,0 +1,14 @@
+cloud architecture -> module 14 -> optional guided lab (check manual)
+but it is not  open ,do in cosole 
+open cloud 9 from console in new tab -> open ecr in new tab->open ecs in new tab->open ec2 in new tab->
+open cloud terminal -> paste this -> curl -s https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/CUR-TF-200-ACACAD-3-113230/19-lab-mod14-guided-ECS/s3/lab-files-ms-node-js.tar.gz | tar -zxv  -> ls -> cd 1-no-container/ -> ls ->cat package.json -> sudo npm install -> npm start ->
+open new terminal -> paste -> curl localhost:3000/api/users -> then paste ->
+curl localhost:3000/api/threads -> then paste -> curl localhost:3000/api/posts/in-thread/1 ->back to old terminal -> 
+
+cd .. ->ls -> cd 2-containerized-monolith -> ls -> cat Dockerfile -> docker build -t mcb-repo:latest . -> open ecr -> create -> repo name = mcb-repo -> create -> open that -> view push command -> copy 1st ,3rd,4th command in cloud 9 terminal -> back to ecr refresh to see image -> open ecs -> create cluster -> cluster name = mcb-cluster -> uncheck aws fargate -> check aws ec2 instances -> ami = a Linux 2023 -> ece instance = t2.large -> ec2 instance role choose default role -> desired cap = min =2 ,max=2 ->key pai =vockey -> ebs volume size=50 -> subnet sboth public -> sg = created one ->
+ create -> in ecs left side task definition in new tab -> create new task definition -> mcb-task -> uncheck fargate check ec2 -> container - 1 name = mcb-monolothic -> copy url from ecr image -> paste in image uri-> port = 3000 -> cpu = 1 ,hard limit = 3,soft limit = 1->create -> in ecs cluster created click ther to open ec2 autoscaling -> ckeck instances ->back to ecs cluster ->mcbcluster ->create service -> family=mcb-task -> service name = mcb-service -.> networking sg= created one -> lb=application lb ->lb name = mcb-elb ->create new listener ,port=80 -> create -> ec2 lb on left side -> copy lb dns name browse 
+
+for all 3 sevice 
+goto ecr create 3 repo name =mcb-users-repo  ,name=mcb-posts-repo ,name =mcb-threads-repo create -> goto cloud9 cd environment-> cd 3-containerinstances-> ls -> cd users -> ls -. cat dockerfile-> docker build -t mcb-users-repo:latest -> goto ecr view push command copy 1,3,4 command same for 2 remaing 
+-> create task and service without loadbalancer -> in ecs ->task definition -> name=mcb-user-task->ec2 instance -> container name =mcb-users container port=3000 create task -> service -> ecs ->create service -> na,e =mcb-users-service -> network =labvpc ,lb=application ,name=mcb,listener =use existing , target name = mcb-user-target ,path =/api/users* order = 1 -> create 
+do same for remaining 2 
