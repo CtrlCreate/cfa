@@ -1,0 +1,83 @@
+6.	Design a solution to ensure the availability of café application due to any failures in availability zone or datacenter such that café clients should be diverted secondary sites in different region when primary website is down. 
+-fail-over routing policy using route53
+-Sandbox – 
+-CFA: -
+-Cloud architecting: Module 10 Guided lab
+-Guided lab: Creating a Highly Available Environment
+
+
+route53>
+health check>
+name>
+primary_health
+protocol>
+ip address>
+paste the primary instance public ip from ec2>
+post>
+80
+path>
+mompopcafe
+adv config>
+fast>
+failure threshold>
+2
+next>
+--------this send health check every 10s, if it doesnt respond, it is unhealthy
+alarm>----------send 2 times
+yes>
+new sns topic>
+name>
+primary_health
+rec email>
+xyz@mail.com
+ok>
+
+hosted zone>
+record>
+record name>
+www
+record type>
+a- xxx >
+alias>
+paste ip addr of primary server>
+ttl>
+15
+routing policy>
+failover>
+record type>
+primary>
+health check>
+primary_health>
+id>
+primary
+create record>
+
+select the record>
+copy the record name>
+link/mompopcafe in browser>
+
+copy the ip address of instance 2 from ec2>
+create a record>
+www
+record type>
+a- xxx >
+alias>
+paste ip addr of secondary server>
+ttl>
+15
+routing policy>
+failover>
+record type>
+secondary>
+create record>
+
+health checks>-check the health of site
+
+///to check the working
+instance1>
+stop instance>
+//if we access this site, itll be unavailable
+
+check in health check>
+
+refresh the link/mompopcafe in browser>
