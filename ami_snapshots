@@ -1,4 +1,8 @@
-  ec2 AMI snapshot --------
+3.	Provide a cost-optimized and fastest solution to replicate the application deployed in step 2 in different region of AWS. 
+-create a snapshot of the EC2 instance and then create the Image from snapshot
+
+
+ec2 AMI snapshot --------
       Here's a summarized, step-by-step flow of the entire process:
 Step 1: Create EC2 Instance
 •	Login to AWS Console and go to EC2 Dashboard.
