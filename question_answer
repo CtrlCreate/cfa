@@ -1,0 +1,84 @@
+ Following are the set of modules need to be implemented:
+
+1.	Design a Bullet Proof Architecture for hosting a Café Static website for a Business case using AWS Services. 
+Note: Architectural Solution should record/document Content Distribution Globally across all region and provide solution for accessing site via domain name (No need of implementing this feature) 
+
+- S3 bucket static web hosting 
+– you can try in sandbox
+-CFA:  -
+-Cloud architecting: Module 4 challenge lab
+Challenge (Cafe) lab: Creating a Static Website for the Cafe
+
+2.	Design an architecture for hosting Café dynamic website of particular using un-managed solutions for database in a particular region of AWS for setting dev or test environment.  
+
+- Standalone dynamic website using one single EC2 insatnce
+-you can try in sandbox
+-CFA: Module 6 lab 3 (its not exact solution, but you can practice using this lab)
+-Cloud architecting: Module 5 Challenge lab
+-Challenge (Cafe) lab: Creating a Dynamic Website for the Café
+
+3.	Provide a cost-optimized and fastest solution to replicate the application deployed in step 2 in different region of AWS. 
+-create a snapshot of the EC2 instance and then create the Image from snapshot
+
+4.	Design a cloud virtual network in a region to host web servers and database servers in a highly available and fault-tolerant fashion. Also to address the need of making database layer private.
+
+
+-Host web servers on public subnet and unmanaged db servers on private subnet
+-you can try in sandbox
+-CFA: Module 5 Lab 2(its not exact solution, but you can practice using this lab)
+-Cloud architecting: Module 5 Challenge lab
+-Challenge (Cafe) lab: Creating a VPC Networking Environment for the Café
+-Challenge (Cafe) lab: Creating a Dynamic Website for the Café
+**you can use both labs to practice
+
+
+5.	Design an architecture for hosting café dynamic website in a prod kind of environment using managed solutions for database in a particular region. 
+-Create database using RDS and connect it to web layer
+-you can try this in sandbox 
+-CFA: Module 8 Lab 5
+-Cloud architecting: Module 6 challenge lab
+-Challenge (Cafe) lab: Migrating a Database to Amazon RDS
+-Guided lab: Creating an Amazon RDS Database
+
+6.	Design a solution to ensure the availability of café application due to any failures in availability zone or datacenter such that café clients should be diverted secondary sites in different region when primary website is down. 
+-fail-over routing policy using route53
+-Sandbox – 
+-CFA: -
+-Cloud architecting: Module 10 Guided lab
+-Guided lab: Creating a Highly Available Environment
+
+
+7.	Design a highly available, fault tolerant, scalable architecture for hosting the café dynamic website using AWS Global infrastructure such as to achieve availability and application should be able to scale based on-demand request of the customers. 
+-Implement the solution using load balancers and auto-scaling group
+-can be implemented in sandbox environment
+-CFA: Module 10 Lab 6
+-Cloud architecting: Module 10 challenge lab or capstone project
+-Lab - 6 Scale & Load Balance your Architecture-
+-Challenge (Café) lab: Creating a Scalable and Highly Available Environment for the Café
+-Capstone Project
+
+8.	Design a serverless solution to extract and send notification to café app owner about products sold on each day at 10 pm. 
+-implemented using Lambda
+-Sandbox –
+-CFA: Module 6 activity
+-Cloud architecting – Module 14 challenge lab
+-Challenge (Café) lab: Implementing a Serverless Architecture for the Café
+-Guided lab: Implementing a Serverless Architecture on AWS
+
+9.	Provide solution to migrate café application to micro services and design a solution to deploy micro services using AWS infrastructure and services. 
+-migrating to microservices from monolithic application
+-sandbox -
+-CFA:
+-Cloud architecting:  Module 14 guided lab(optional)
+-  (Optional) Guided lab: Breaking a Monolithic Node.js Application into Microservices
+
+10.	 Create a continuous monitoring of café application and its infrastructure to monitor application logs and server logs. Create an alarm and events to notify client as environment configuration changes or encounter errors to make infra proactive and reactive to changing needs.  
+
+11.	Automate the deployment of following infrastructure layers of business solution:
+
+a.	Network Layer – VPC, IGW, Subnet, Route table and Route table association to Subnet. 
+b.	Application Layer – Security Group, Instance on the VPC and Subnet created in Network Layer and Static website of Business. 
+c.	Replicate both Network and Application layer of Infrastructure with the same template in different region of AWS. 
+Challenge (Café) lab: Automating Infrastructure Deployment
+Guided lab: Automating Infrastructure with AWS CloudFormation
+
