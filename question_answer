@@ -79,6 +79,7 @@ Challenge (Cafe) lab: Creating a Static Website for the Cafe
 a.	Network Layer – VPC, IGW, Subnet, Route table and Route table association to Subnet. 
 b.	Application Layer – Security Group, Instance on the VPC and Subnet created in Network Layer and Static website of Business. 
 c.	Replicate both Network and Application layer of Infrastructure with the same template in different region of AWS. 
+architecture -> module 11->
 Challenge (Café) lab: Automating Infrastructure Deployment
 Guided lab: Automating Infrastructure with AWS CloudFormation
 
